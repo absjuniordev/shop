@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               secondary: Colors.deepOrange,
             ),
             fontFamily: 'Lato'),
-        home: ProductsOverviewPage(),
+        home: const ProductsOverviewPage(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDatailPage(),
         },
