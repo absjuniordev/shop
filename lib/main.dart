@@ -11,9 +11,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -23,17 +22,17 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => Cart(),
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-            colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.purple,
-            ).copyWith(
-              secondary: Colors.deepOrange,
-            ),
-            fontFamily: 'Lato'),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.purple,
+            secondary: Colors.deepOrange,
+          ),
+          fontFamily: 'Lato',
+        ),
         home: const ProductsOverviewPage(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDatailPage(),
