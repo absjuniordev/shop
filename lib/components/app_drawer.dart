@@ -10,7 +10,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: const Text('Bem Vindo Usuario!'),
+            title: const Text('Olá malhado(a)!'),
             automaticallyImplyLeading: false,
           ),
           const Divider(),
@@ -32,7 +32,22 @@ class AppDrawer extends StatelessWidget {
                 AppRoutes.ORDERS,
               );
             },
-          )
+          ),
+          const Divider(),
+          const ListTile(
+            title: Text("Sua loja de suplementos"),
+            subtitle: Text("Fique gigante!!!"),
+          ),
+          const Divider(),
+          const ListTile(
+            leading: Icon(Icons.whatsapp),
+            title: Text('Tel: (71) 99334-6500'),
+          ),
+          const Divider(),
+          const ListTile(
+            leading: Icon(Icons.web),
+            title: Text('https://github.com/absjuniordev/'),
+          ),
         ],
       ),
     );
