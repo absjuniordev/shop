@@ -30,7 +30,7 @@ final dummyProducts = [
   ),
   Product(
     id: 'p4',
-    name: 'Vit C',
+    name: 'VIT C',
     description:
         'Ela aumenta a produção de leucócitos, os conhecidos glóbulos brancos, que atuam como a defesa do organismo contra agentes externos e estranhos ao corpo, como vírus e bactérias. Além disso, ela aumenta os níveis de anticorpos, quando o organismo desenvolve os anticorpos para combater uma gripe ou um resfriado.',
     price: 49.99,
