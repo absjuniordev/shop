@@ -189,7 +189,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       validator: (_imageUrl) {
                         final imageUrl = _imageUrl ?? '';
 
-                        if (!isValidImageUrl(imageUrl)) {
+                        if (isValidImageUrl(imageUrl)) {
                           return 'Informe uma Url válida!';
                         }
 
@@ -213,14 +213,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     alignment: Alignment.center,
                     child: _imageUrlController.text.isEmpty
                         ? const Text('Informe a Url')
-                        : SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Image.network(_imageUrlController.text),
-                            ),
-                          ),
+                        : Image.network(_imageUrlController.text),
                   ),
                 ],
               ),
