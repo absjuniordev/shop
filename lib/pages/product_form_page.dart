@@ -214,7 +214,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             validator: (_imageUrl) {
                               final imageUrl = _imageUrl ?? '';
 
-                              if (isValidImageUrl(imageUrl)) {
+                              if (!isValidImageUrl(imageUrl)) {
                                 return 'Informe uma Url válida!';
                               }
 
