@@ -3,12 +3,12 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop/data/dummy_data.dart';
 import 'package:shop/models/product.dart';
 
 class ProductList with ChangeNotifier {
-  final List<Product> _items = dummyProducts;
   final _url = 'https://shop-jr-df699-default-rtdb.firebaseio.com/product.json';
+  final List<Product> _items = [];
+
   List<Product> get items => [..._items];
   List<Product> get favotieItems =>
       _items.where((prod) => prod.isFavorite).toList();
@@ -19,7 +19,18 @@ class ProductList with ChangeNotifier {
 
   Future<void> loadProducts() async {
     final response = await http.get(Uri.parse(_url));
-    print(jsonDecode(response.body));
+    if (response.body == 'null') return;
+    Map<String, dynamic> data = jsonDecode(response.body);
+    data.forEach((productId, productData) {
+      _items.add(Product(
+        id: productId,
+        name: productData['name'],
+        description: productData['description'],
+        price: productData['price'],
+        imageUrl: productData['imageUrl'],
+        isFavorite: productData['isFavorite'],
+      ));
+    });
   }
 
   Future<void> saveProduct(Map<String, Object> data) {
