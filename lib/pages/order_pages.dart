@@ -11,6 +11,13 @@ class OrdersPage extends StatefulWidget {
   State<OrdersPage> createState() => _OrdersPageState();
 }
 
+Future<void> _refreshProducts(BuildContext context) {
+  return Provider.of<OrderList>(
+    context,
+    listen: false,
+  ).loadOrders();
+}
+
 class _OrdersPageState extends State<OrdersPage> {
   bool _isLoading = true;
 
@@ -33,14 +40,17 @@ class _OrdersPageState extends State<OrdersPage> {
         title: const Text('Meus Pedidos'),
       ),
       drawer: const AppDrawer(),
-      body: _isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              itemCount: orders.itemsCount,
-              itemBuilder: (ctx, i) => OrderWidget(order: orders.items[i]),
-            ),
+      body: RefreshIndicator(
+        onRefresh: () => _refreshProducts(context),
+        child: _isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemCount: orders.itemsCount,
+                itemBuilder: (ctx, i) => OrderWidget(order: orders.items[i]),
+              ),
+      ),
     );
   }
 }
